@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post, Put, Query } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 
 import { RutaService } from "../services/ruta.service";
-import { PaginacionDto } from "../../shared/dtos/pagination.dto";
+import { PaginacionDto } from "../../shared/dtos/paginacion.dto";
 import { CrearRutaDto } from "../dtos/crear-ruta.dto";
 import { ActualizarRutaDto } from "../dtos/actualizar-ruta.dto";
 import { ObtenerRutaDto } from "../dtos/obtener-ruta.dto";

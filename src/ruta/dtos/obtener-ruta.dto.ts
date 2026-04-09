@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString, Matches, MinLength } from "class-validator";
 
-import { PaginacionDto } from "../../shared/dtos/pagination.dto";
+import { PaginacionDto } from "../../shared/dtos/paginacion.dto";
 
 export class ObtenerRutaDto extends PaginacionDto {
     @IsString()
