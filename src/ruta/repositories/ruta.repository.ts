@@ -1,10 +1,11 @@
 import { DataSource, Repository } from "typeorm";
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
 
 import { Ruta } from "../entities/ruta.entity";
-import { PaginacionDto } from "./dtos/pagination.dto";
 import { CrearRutaDto } from "../dtos/crear-ruta.dto";
 import { RutaEstadoEnum } from "../enums/ruta-estado.enum";
+import { ActualizarRutaDto } from "../dtos/actualizar-ruta.dto";
+import { ObtenerRutaDto } from "../dtos/obtener-ruta.dto";
 
 @Injectable()
 export class RutaRepository extends Repository<Ruta> {
@@ -12,11 +13,15 @@ export class RutaRepository extends Repository<Ruta> {
         super(Ruta, dataSource.createEntityManager())
     }
 
-    obtenerRutas({ limit, offset }: PaginacionDto) {
-        return this.find({
+    async obtenerRutas({ placa, limit, offset }: ObtenerRutaDto) {
+        const rutasDb = await this.find({
+            where: { placa },
             skip: offset,
             take: limit,
         })
+
+        if (rutasDb.length === 0) throw new NotFoundException(`No se encontraron rutas para la placa ${placa}`)
+        return rutasDb;
     }
 
     crearRuta(createDto: CrearRutaDto) {
@@ -30,5 +35,19 @@ export class RutaRepository extends Repository<Ruta> {
             throw new InternalServerErrorException(error?.message)
         }
 
+    }
+
+    async obtenerRutaPorId(id: number) {
+        const rutaDb = await this.findOneBy({ id });
+        if (!rutaDb) throw new NotFoundException(`La ruta con id ${id} no encontrado`)
+        return rutaDb
+    }
+
+    async actualizarRuta(ruta: Ruta, { estado }: ActualizarRutaDto) {
+        const rutaUpdated = {
+            ...ruta,
+            estado,
+        }
+        return this.save(rutaUpdated);
     }
 }
