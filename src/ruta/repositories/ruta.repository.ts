@@ -4,8 +4,8 @@ import { Injectable, InternalServerErrorException, NotFoundException } from "@ne
 import { Ruta } from "../entities/ruta.entity";
 import { CrearRutaDto } from "../dtos/crear-ruta.dto";
 import { RutaEstadoEnum } from "../enums/ruta-estado.enum";
-import { ActualizarRutaDto } from "../dtos/actualizar-ruta.dto";
 import { ObtenerRutaDto } from "../dtos/obtener-ruta.dto";
+import { ActualizarRutaDto } from "../dtos/actualizar-ruta.dto";
 
 @Injectable()
 export class RutaRepository extends Repository<Ruta> {

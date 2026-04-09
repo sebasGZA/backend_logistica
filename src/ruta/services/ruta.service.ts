@@ -1,10 +1,10 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
+
 import { RutaRepository } from "../repositories/ruta.repository";
-import { PaginacionDto } from "../../shared/dtos/paginacion.dto";
 import { CrearRutaDto } from "../dtos/crear-ruta.dto";
-import { ActualizarRutaDto } from '../dtos/actualizar-ruta.dto';
 import { RutaEstadoEnum } from "../enums/ruta-estado.enum";
 import { ObtenerRutaDto } from '../dtos/obtener-ruta.dto';
+import { ActualizarRutaDto } from "../dtos/actualizar-ruta.dto";
 
 @Injectable()
 export class RutaService {
