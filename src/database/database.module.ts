@@ -9,6 +9,5 @@ import { dataSource } from './config/data-source';
             ...dataSource.options
         })
     ],
-    exports: [TypeOrmModule]
 })
 export class DatabaseModule { }
