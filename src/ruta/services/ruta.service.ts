@@ -5,9 +5,10 @@ import { CrearRutaDto } from "../dtos/crear-ruta.dto";
 import { RutaEstadoEnum } from "../enums/ruta-estado.enum";
 import { ObtenerRutaDto } from '../dtos/obtener-ruta.dto';
 import { ActualizarRutaDto } from "../dtos/actualizar-ruta.dto";
+import { IRutaService } from "../interfaces/ruta-service.interface";
 
 @Injectable()
-export class RutaService {
+export class RutaService implements IRutaService {
     constructor(private readonly rutaRepository: RutaRepository) { }
 
     getRutas(ObtenerRutaDto: ObtenerRutaDto) {
