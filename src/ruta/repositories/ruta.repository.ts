@@ -6,9 +6,10 @@ import { CrearRutaDto } from "../dtos/crear-ruta.dto";
 import { RutaEstadoEnum } from "../enums/ruta-estado.enum";
 import { ObtenerRutaDto } from "../dtos/obtener-ruta.dto";
 import { ActualizarRutaDto } from "../dtos/actualizar-ruta.dto";
+import { IRutaRepository } from "../interfaces/ruta-repository.interface";
 
 @Injectable()
-export class RutaRepository extends Repository<Ruta> {
+export class RutaRepository extends Repository<Ruta> implements IRutaRepository {
     constructor(readonly dataSource: DataSource) {
         super(Ruta, dataSource.createEntityManager())
     }
